@@ -25,11 +25,13 @@ const authenticate = require("./authmiddleware");
 app.use(authenticate);
 
 app.use(cookieParser());
-app.use(session({
+app.use(
+  session({
     secret: secret,
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+  })
+);
 
 // Routes
 app.use("/api/auth", authRoute);

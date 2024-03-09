@@ -68,8 +68,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password" });
     }
 
-    req.session.userId = user._id;
-
+    // set the req.isAuthenticated to true
+    req.session.isAuthenticated = true;
     // set the req.user to the authenticated user
     req.user = user;
 
@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  try{
+  try {
     req.session.destroy();
     res.clearCookie("authenticated");
     res.status(200).json({ message: "User logged out"});
@@ -89,9 +89,8 @@ router.post("/logout", (req, res) => {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
-})
+});
 
 module.exports = {
-  router, 
-  isAuthenticated
+  router
 };
