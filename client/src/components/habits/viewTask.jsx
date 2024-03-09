@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { createTask } from "../api/tasks";
+import { createTask } from "../../api/tasks";
 
 const viewTaskModal = ({ task, handleClose }) => {
   return (

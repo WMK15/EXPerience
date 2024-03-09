@@ -1,36 +1,36 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card, Form, Button, ListGroup } from "react-bootstrap";
-import AddTaskModal from "./addTask";
-import { getTasks } from "../api/tasks";
+import AddHabitModal from "./addHabit";
+import { getHabits } from "../../api/habits";
 
-export const Tasks = ({ tasks }) => {
+export const Habits = ({ habits }) => {
   const [show, setShow] = useState(false);
-  const [taskShow, setTaskShow] = useState(false);
+  const [habitShow, setHabitShow] = useState(false);
 
   //   useEffect(() => {
-  //     getTasks();
+  //     getHabits();
   //   });
 
-  const tempTasks = [
+  const tempHabits = [
     {
       _id: "1",
-      name: "Task 1",
-      description: "Task 1 description",
+      name: "Habit 1",
+      description: "Habit 1 description",
       priority: "high",
       dueTime: "2021-09-01",
     },
     {
       _id: "2",
-      name: "Task 2",
-      description: "Task 2 description",
+      name: "Habit 2",
+      description: "Habit 2 description",
       priority: "medium",
       dueTime: "2021-09-02",
     },
     {
       _id: "3",
-      name: "Task 3",
-      description: "Task 3 description",
+      name: "Habit 3",
+      description: "Habit 3 description",
       priority: "low",
       dueTime: "2021-09-03",
     },
@@ -38,10 +38,10 @@ export const Tasks = ({ tasks }) => {
 
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "18rem" }} className="mt-5">
         <Card.Header>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span>Tasks</span>
+            <span>Habits</span>
             <Button
               variant="primary"
               onClick={() => {
@@ -54,33 +54,37 @@ export const Tasks = ({ tasks }) => {
         </Card.Header>
         <Card.Body>
           <ListGroup>
-            {tempTasks.map((task) => (
-              <ListGroup.Item key={task._id}>
-                <img src={task.image} alt={task.name} />
+            {tempHabits.map((habit) => (
+              <ListGroup.Item key={habit._id} className="mb-3">
                 <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
                 >
-                  <h5>{task.name}</h5>
-                  <viewTask
-                    task={task}
+                  <h6>{habit.name}</h6>
+                  <viewHabit
+                    habit={habit}
                     handleClose={() => {
-                      setTaskShow(false);
+                      setHabitShow(false);
                     }}
                   />
                   <Button
                     variant="primary"
+                    size="sm"
                     onClick={() => {
-                      setTaskShow(true);
+                      setHabitShow(true);
                     }}
                   >
                     View
                   </Button>
                 </div>
-                {taskShow && (
-                  <showTask
-                    task={task}
+                {habitShow && (
+                  <showHabit
+                    habit={habit}
                     handleClose={() => {
-                      setTaskShow(false);
+                      setHabitShow(false);
                     }}
                   />
                 )}
@@ -88,7 +92,7 @@ export const Tasks = ({ tasks }) => {
             ))}
           </ListGroup>
 
-          <AddTaskModal
+          <AddHabitModal
             show={show}
             handleClose={() => {
               setShow(false);

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { createTask } from "../api/tasks";
+import { createHabit } from "../../api/habits";
 
-const AddTaskModal = ({ show, handleClose }) => {
+const AddHabitModal = ({ show, handleClose }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -10,16 +10,16 @@ const AddTaskModal = ({ show, handleClose }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const task = {
+    const habit = {
       name,
       description,
       priority,
       dueTime,
     };
 
-    createTask(task).then((response) => {
+    createHabit(habit).then((response) => {
       console.log(response);
-      alert("Task created successfully");
+      alert("Habit created successfully");
     });
   };
 
@@ -42,15 +42,15 @@ const AddTaskModal = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Task</Modal.Title>
+        <Modal.Title>Add Habit</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="taskName">
-            <Form.Label>Task Name</Form.Label>
+          <Form.Group controlId="habitName">
+            <Form.Label>Habit Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter task name"
+              placeholder="Enter habit name"
               value={name}
               onChange={handleNameChange}
             />
@@ -93,11 +93,11 @@ const AddTaskModal = ({ show, handleClose }) => {
           Close
         </Button>
         <Button variant="primary" type="submit">
-          Add Task
+          Add Habit
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default AddTaskModal;
+export default AddHabitModal;

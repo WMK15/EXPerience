@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
-import { Row, Col, Nav } from "react-bootstrap";
+import { Row, Col, ProgressBar, Container, Button } from "react-bootstrap";
 import { useCookies } from "react-cookie";
 
-import dogHappy from "../assets/images/dog_happy.jpg";
+import dogIdle1 from "../assets/images/corgi/corgi_idle1.gif";
 import dashboardImage from "../assets/images/dashboard.jpg";
 
+// Components
 import { getTasks } from "../api/tasks";
-import { Tasks } from "../components/Tasks";
-import { Progress } from "../components/Progress";
+import { Tasks } from "../components/tasks/Tasks";
+import { Habits } from "../components/habits/Habits";
+import { PomodoroModal } from "../components/pomodoro/PomodoroModal";
+// API
 import { getProgress } from "../api/user";
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [progressValue, setProgressValue] = useState(20);
+  const [progressValue, setProgressValue] = useState(100);
 
   const [cookies] = useCookies(["userId"]);
   const userId = cookies.userId;
@@ -51,60 +54,53 @@ export default function Home() {
             alignItems: "center",
           }}
         >
-          <div style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-            <Nav
-              variant="tabs"
-              defaultActiveKey="mon"
-              style={{ fontWeight: "bold" }}
-            >
-              <Nav.Item>
-                <Nav.Link
-                  eventKey="mon"
-                  style={{ backgroundColor: "grey", color: "white" }}
-                >
-                  Mon
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  eventKey="tue"
-                  style={{ backgroundColor: "grey", color: "white" }}
-                >
-                  Tue
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  eventKey="wed"
-                  style={{ backgroundColor: "grey", color: "white" }}
-                >
-                  Wed
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  eventKey="thu"
-                  style={{ backgroundColor: "grey", color: "white" }}
-                >
-                  Thu
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  eventKey="fri"
-                  style={{ backgroundColor: "grey", color: "white" }}
-                >
-                  Fri
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </div>
+          <Habits />
           <Tasks tasks={tasks} />
+          <PomodoroModal />
         </Col>
-        <Col xs={9}>
-          <div>
-            <Progress value={progressValue} />
-          </div>
+        <Col
+          xs={9}
+          style={{
+            backgroundImage: `url(${dashboardImage})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
+          <Container>
+            <ProgressBar
+              now={progressValue}
+              label={`${progressValue}%`}
+              className="mt-5"
+              style={{
+                height: "25px",
+              }}
+              animated
+            />
+            <div
+              style={{
+                position: "relative",
+                top: "45vh",
+                paddingLeft: "30vw",
+                paddingRight: "30vw",
+              }}
+              className="text-center"
+            >
+              <ProgressBar
+                now={progressValue}
+                label={`${progressValue} HP`}
+                style={{ height: "25px", fontWeight: "bold" }}
+                variant="success"
+              />
+              <img
+                src={dogIdle1}
+                alt="Dog"
+                style={{
+                  height: "15vh",
+                }}
+              />
+            </div>
+          </Container>
         </Col>
       </Row>
     </>
