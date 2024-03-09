@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="log-in__main" id="log-in__main">
+        <div class="log-in__darken">
+            <div class="log-in__darken-gradient">
+                <div class="log-in__center-container">
+                    <div class="log-in__container-block">
+                        <div class="log-in__rectangle--log-in">
+                            <h3>Register here</h3>
+                            <form action=""></form>
+                            <form class="form-content" action="submit.php" method="post">
+                                <input type="text" id="log-in__form-username" placeholder="Enter username"
+                                    name="username" required>
+                                <input type="text" id="log-in__form-password" placeholder="Enter password"
+                                    name="password" required>
+                                    
+                                <button id="submit-Btn" type="submit" onclick="closeForm(event)">Register account</button>
+
+                                <br>
+                                <small>By signing up, you agree to our <span class="log-in__highlight-text">Privacy
+                                        Policy</span>, <span class="log-in__highlight-text">Cookie Policy</span>, and
+                                    <span class="log-in__highlight-text">Member Agreement</span>.</small>
+                            </form>
+                        </div>
+
+                        <div class="log-in__rectangle--register">
+                            <h3>Current user? <span class="log-in__highlight-text">Log in here</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
