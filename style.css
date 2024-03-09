@@ -1,4 +1,6 @@
-*, *::before, *::after{
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     outline: 0;
@@ -67,13 +69,15 @@ body {
     background-color: rgba(0, 0, 0, 0.15);
     z-index: 1;
 }
+
 .log-in__darken-gradient {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7)); /* Adjust opacity as needed */
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    /* Adjust opacity as needed */
 }
 
 .log-in__navbar {
@@ -130,9 +134,12 @@ body {
 
 .log-in__center-container {
     display: flex;
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
-    height: 100vh; /* Full viewport height */
+    justify-content: center;
+    /* Horizontal centering */
+    align-items: center;
+    /* Vertical centering */
+    height: 100vh;
+    /* Full viewport height */
 }
 
 .log-in__container-block {
@@ -222,9 +229,7 @@ body {
     font-size: 11pt;
 }
 
-#log-in__submit-button {
-    
-}
+#log-in__submit-button {}
 
 #submit-Btn {
     display: inline-block;
@@ -242,7 +247,8 @@ body {
 }
 
 .log-in__padding {
-    padding: 10px; /* Adjust the value as needed */
+    padding: 10px;
+    /* Adjust the value as needed */
 }
 
 .log-in__submit-button {
@@ -311,12 +317,7 @@ body {
 }
 
 
-.general__check-mark_box {
-    
-}
-
-/* Custom CSS for checkbox */
-.checkbox-container {
+.checkbox__container {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -324,17 +325,16 @@ body {
     cursor: pointer;
     font-size: 18px;
     user-select: none;
-  }
-  
-  /* Hide the default checkbox */
-  .checkbox-container input {
+}
+
+.checkbox__container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+/* Create a custom checkbox */
+.checkbox__checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -342,32 +342,32 @@ body {
     width: 25px;
     background-color: #ccc;
     border-radius: 5px;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .checkbox-container:hover input ~ .checkmark {
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox__container:hover input~.checkmark {
     background-color: #ddd;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .checkbox-container input:checked ~ .checkmark {
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox__container input:checked~.checkmark {
     background-color: dodgerblue;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox__checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Show the checkmark when the checkbox is checked */
-  .checkbox-container input:checked ~ .checkmark:after {
+}
+
+/* Show the checkmark when the checkbox is checked */
+.checkbox__container input:checked~.checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .checkbox-container .checkmark:after {
+}
+
+/* Style the checkmark/indicator */
+.checkbox__container .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -375,5 +375,4 @@ body {
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
-  }
-  
+}
