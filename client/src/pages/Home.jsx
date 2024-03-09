@@ -15,7 +15,7 @@ export default function Home() {
   // return a grid with one row and two columns, the first column should be 3/12 and the second column should be 9/12
   return (
     <>
-      <Row>
+      <Row style={{ height: "100vh" }}>
         <Col
           xs={3}
           style={{
@@ -24,7 +24,11 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <Nav variant="tabs" defaultActiveKey="mon">
+          <Nav
+            variant="tabs"
+            defaultActiveKey="mon"
+            style={{ marginTop: "1rem", fontWeight: "bold" }}
+          >
             <Nav.Item>
               <Nav.Link
                 eventKey="mon"
@@ -68,24 +72,26 @@ export default function Home() {
           </Nav>
         </Col>
         <Col xs={9}>
-          <h1>Progress</h1>
-          <ProgressBar now={60} />
-          <Card>
-            <Card.Img variant="top" src={dogHappy} />
-            <Card.Body>
-              <Card.Title>Happy Dog</Card.Title>
-              <Card.Text>
-                This is a happy dog. He is happy because he has completed all
-                his tasks and habits for today.
-              </Card.Text>
-              <Button
-                variant="primary"
-                style={{ backgroundColor: "grey", color: "white" }}
-              >
-                Edit
-              </Button>
-            </Card.Body>
-          </Card>
+          <Container style={{ height: "100%" }}>
+            <h1>Progress</h1>
+            <ProgressBar now={60} />
+            <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src={dogHappy} />
+              <Card.Body>
+                <Card.Title>Happy Dog</Card.Title>
+                <Card.Text>
+                  This is a happy dog. He is happy because he has completed all
+                  his tasks and habits for today.
+                </Card.Text>
+                <Button
+                  variant="primary"
+                  style={{ backgroundColor: "grey", color: "white" }}
+                >
+                  Edit
+                </Button>
+              </Card.Body>
+            </Card>
+          </Container>
         </Col>
       </Row>
     </>
