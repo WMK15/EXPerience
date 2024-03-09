@@ -71,15 +71,32 @@ router.post("/login", async (req, res) => {
     }
 
     // set the req.isAuthenticated to true
-    req.isAuthenticated = true;
+    req.session.isAuthenticated = true;
     // set the req.user to the authenticated user
     req.user = user;
 
-    res.status(200).json({ message: "User authenticated successfully" });
+    res
+      .status(200)
+      .json({ message: "User authenticated successfully" })
+      .cookie("authenticated", "true", { maxAge: 3600000, httpOnly: true });
   } catch (error) {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-module.exports = router;
+router.post("/logout", (req, res) => {
+  try {
+    req.session.destroy();
+    res.clearCookie("authenticated");
+    res.status(200).json({ message: "User logged out" });
+  } catch (error) {
+    console.error("Error authenticating user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+module.exports = {
+  router,
+  isAuthenticated,
+};
