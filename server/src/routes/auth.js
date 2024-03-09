@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/profileSchema");
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -25,6 +26,7 @@ router.post("/register", async (req, res) => {
 
     // Create a new user with hashed password
     const newUser = new User({
+      _id: new mongoose.Types.ObjectId(),
       username,
       firstName,
       lastName,
