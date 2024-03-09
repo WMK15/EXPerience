@@ -6,15 +6,6 @@ const mongoose = require("mongoose");
 
 const router = express.Router();
 
-const isAuthenticated = (req, res, next) => {
-  if (req.session.userId){
-    res.cookie("authenticated", "true", {maxAge: 3600000, httpOnly: true});
-    next();
-  } else {
-    res.status(401).send("Unauthorised");
-  }
-}
-
 // POST request to register a new user
 router.post("/register", async (req, res) => {
   try {
@@ -82,7 +73,7 @@ router.post("/login", async (req, res) => {
     // set the req.user to the authenticated user
     req.user = user;
 
-    res.status(200).json({ message: "User authenticated successfully" });
+    res.status(200).json({ message: "User authenticated successfully" }).cookie("authenticated", "true", {maxAge: 3600000, httpOnly: true});;
   } catch (error) {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -100,4 +91,7 @@ router.post("/logout", (req, res) => {
   }
 })
 
-module.exports = router;
+module.exports = {
+  router, 
+  isAuthenticated
+};
