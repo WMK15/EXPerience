@@ -19,15 +19,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
-const {connect, close} = require("./util/middleware");
+const { connect, close } = require("./util/middleware");
 app.use(connect);
 
 app.use(cookieParser());
-app.use(session({
+app.use(
+  session({
     secret: secret,
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+  })
+);
 
 // Routes
 app.use("/api/auth", authRoute);
