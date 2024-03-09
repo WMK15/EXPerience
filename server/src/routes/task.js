@@ -15,7 +15,7 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // GET all tasks
-router.get("/tasks", (req, res) => {
+router.get("/", (req, res) => {
   // Logic to fetch all tasks from the database
   // and send them as a response
   Task.find()
@@ -51,7 +51,7 @@ router.post("/create", (req, res) => {
 });
 
 // PUT/update an existing task
-router.put("/tasks/:id", isAuthenticated, (req, res) => {
+router.put("/:id", isAuthenticated, (req, res) => {
   const taskId = req.params.id;
   const { name, priority, dueTime, completed } = req.body;
   if (name && priority && dueTime && completed) {
