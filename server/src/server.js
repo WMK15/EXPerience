@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
-const { connect, close } = require("./util/middleware");
+const { connect, close, isAuthenticated } = require("./util/middleware");
 app.use(connect);
 
 app.use(cookieParser());
@@ -33,6 +33,7 @@ app.use(
 
 // Routes
 app.use("/api/auth", authRoute);
+app.use(isAuthenticated);
 app.use("/api/profile", profileRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/habits", habitRoute);
