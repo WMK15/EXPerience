@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mongo = require("./util/mongo");
 
 const authRoute = require("./routes/auth");
 const profileRoute = require("./routes/profile");
