@@ -72,11 +72,10 @@ router.post("/login", async (req, res) => {
     req.session.isAuthenticated = true;
     // set the req.user to the authenticated user
     req.user = user;
+    req.session.userId = user._id;
 
-    res
-      .status(200)
-      .json({ message: "User authenticated successfully" })
-      .cookie("authenticated", "true", { maxAge: 3600000, httpOnly: true });
+    res.cookie("authenticated", "true", { maxAge: 3600000, httpOnly: true });
+    res.status(200).json({ message: "User authenticated successfully" });
   } catch (error) {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
