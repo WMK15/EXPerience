@@ -3,10 +3,13 @@ const mongoose = require("mongoose");
 const frequencyEnum = ["Daily", "Weekly", "Monthly"];
 
 const habitSchema = new mongoose.Schema({
-  habitId: {
+  _id: {
     type: mongoose.Schema.Types.ObjectId,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
-    unique: true,
   },
   name: {
     type: String,
@@ -21,11 +24,7 @@ const habitSchema = new mongoose.Schema({
     enum: frequencyEnum,
     required: true,
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
+
   completed: {
     type: Boolean,
     default: false,

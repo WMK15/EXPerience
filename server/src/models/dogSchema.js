@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const dogSchema = new mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -12,23 +20,6 @@ const dogSchema = new mongoose.Schema({
   level: {
     type: Number,
     default: 1,
-  },
-  tasks: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Task",
-    },
-  ],
-  habits: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Habit",
-    },
-  ],
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
   },
 });
 
