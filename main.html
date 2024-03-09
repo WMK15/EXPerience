@@ -13,29 +13,86 @@
 </head>
 
 <body style="background-color: white;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <div class="bg-secondary text-white p-1"></div>
+    <div class="container-fluid full-height-container">
+        <div class="row no-gutters">
+            <div class="col-lg-3 general__center-align general__column">
+                <div class="bg-secondary text-white p-1" style="margin-bottom: 10px;"></div>
 
-            </div>
-            <div class="col-lg-10">
-                <div class="bg-primary text-white p-1"></div>
-                <div class="progress" style="margin-top: 10px; margin-bottom: 10px; margin-left: 10%; margin-right: 10%;">
-                    <div class="progress-bar" role="progressbar" style="width: 50%; background-image: linear-gradient(to right, #006BA6, #bd288e);" aria-valuenow="50"
-                        aria-valuemin="0" aria-valuemax="100">50%</div>
-                </div>                
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">Mon</button>
+                    <button type="button" class="btn btn-secondary">Tue</button>
+                    <button type="button" class="btn btn-secondary">Wed</button>
+                    <button type="button" class="btn btn-secondary">Thu</button>
+                    <button type="button" class="btn btn-secondary">Fri</button>
+                    <!-- Add more cards for each week -->
+                </div>
 
-                <div class="card" style="width: 15%; position: relative; overflow: hidden;">
-                    <img class="card-img-top" src="images/dog_happy.jpg" alt="Card image cap">
-                    <div class="card-body" style="background-color: transparent;">
-                        <h5 class="card-title">Feed Dog.</h5>
-                        <p class="card-text">This dog will die of hunger if you do not do your tasks. Do them now.</p>
-                        <a href="#" class="btn general__btn highlight__shadow" style="color: white;">Go somewhere</a>
+                <div class="container mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Habit: Exercise</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item task">
+                                    <label class="checkbox-container">Finish
+                                        <input type="checkbox" checked="checked">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <br>
 
+                
+            </div>
+            <div class="col-lg-9 general__center-align" style="margin: 0px; padding: 0px; height: 100vh;">
+                <div class="bg-primary text-white p-1" style="margin-bottom: 10px;"></div>
+                <div class="progress" style="margin-bottom: 10px; margin-left: 10%; margin-right: 10%;">
+                    <div class="progress-bar" role="progressbar"
+                        style="width: 50%; background-image: linear-gradient(to right, #006BA6, #bd288e);"
+                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                </div>
+
+                <div class="container">
+                    <em>Dog happiness is tied to your efforts and consistency.</em>
+                    <div class="row">
+
+                        <div class="col-6">
+                            <div class="card" style="width: 100%; position: relative; overflow: hidden;">
+                                <img class="card-img-top" src="images/dog_happy.jpg" alt="Card image cap"
+                                    style="max-height: 200px; object-fit: cover;">
+                                <div class="card-body" style="background-color: transparent;">
+                                    <h5 class="card-title">Dog happiness is tied to your efforts.</h5>
+                                    <p class="card-text">This dog will die of hunger if you do not do your tasks. Do
+                                        them now.</p>
+                                    <a href="#" class="btn general__btn highlight__shadow" style="color: white;">Go
+                                        somewhere</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="card" style="width: 100%; position: relative; overflow: hidden;">
+                    <img class="card-img-top" src="images/dog_happy.jpg" alt="Card image cap"
+                        style="max-height: 200px; object-fit: cover;">
+                    <div class="card-body" style="background-color: transparent;">
+                        <h5 class="card-title">Dog happiness is tied to your efforts.</h5>
+                        <p class="card-text">This dog will die of hunger if you do not do your tasks. Do
+                            them now.</p>
+                        <a href="#" class="btn general__btn highlight__shadow" style="color: white;">Go
+                            somewhere</a>
+                    </div>
+                </div> -->
 
 
                 <!-- <div class="container mt-5">
