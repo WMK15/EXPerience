@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/profileSchema");
+const Dog = require("../models/dogSchema");
 const mongoose = require("mongoose");
 
 const router = express.Router();
@@ -37,6 +38,16 @@ router.post("/register", async (req, res) => {
 
     // Save the user to the database
     await newUser.save();
+
+    // Creat new dog with the user Id
+    const newDog = new Dog({
+      _id: new mongoose.Types.ObjectId(),
+      userId: newUser._id,
+      name: "Buddy",
+    });
+
+    // Save the dog to the database
+    await newDog.save();
 
     // Respond with success message
     res.status(201).json({ message: "User registered successfully" });

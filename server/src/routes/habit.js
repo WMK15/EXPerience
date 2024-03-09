@@ -20,11 +20,7 @@ const isAuthenticated = (req, res, next) => {
 router.get("/habits", isAuthenticated, (req, res) => {
   // Logic to retrieve habits from the database
   // Replace this with your own implementation
-  const habits = [
-    { id: 1, name: "Exercise", frequency: "Daily", completed: false },
-    { id: 2, name: "Read", frequency: "Weekly", completed: false },
-    { id: 3, name: "Meditate", frequency: "Daily", completed: false },
-  ];
+  const habits = Habit.find({ userId: req.user.id });
 
   res.json(habits);
 });
