@@ -26,7 +26,7 @@ router.get("/habits", isAuthenticated, (req, res) => {
 });
 
 // POST request to create a new habit
-router.post("/habits", isAuthenticated, (req, res) => {
+router.post("/", isAuthenticated, (req, res) => {
   // Add to Habit collection
   const habit = new Habit({
     name: req.body.name,
@@ -40,7 +40,7 @@ router.post("/habits", isAuthenticated, (req, res) => {
 });
 
 // PUT request to mark a habit as complete
-router.put("/habits/:id/complete", isAuthenticated, (req, res) => {
+router.put("/:id/complete", isAuthenticated, (req, res) => {
   // Logic to mark a habit as complete in the database
   // Replace this with your own implementation
   const habitId = parseInt(req.params.id);
