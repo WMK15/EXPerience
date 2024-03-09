@@ -11,8 +11,6 @@ router.post("/register", async (req, res) => {
   try {
     const { username, firstName, lastName, password } = req.body;
 
-    console.log(req.body);
-
     // Check if all required fields are present
     if (!username || !firstName || !lastName || !password) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -75,10 +73,7 @@ router.post("/login", async (req, res) => {
     // set the req.user to the authenticated user
     req.user = user;
 
-    res
-      .status(200)
-      .json({ message: "User authenticated successfully" })
-      .cookie("authenticated", "true", { maxAge: 3600000, httpOnly: true });
+    res.status(200).json({ message: "User authenticated successfully" }).cookie("authenticated", "true", {maxAge: 3600000, httpOnly: true});;
   } catch (error) {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -89,8 +84,8 @@ router.post("/logout", (req, res) => {
   try {
     req.session.destroy();
     res.clearCookie("authenticated");
-    res.status(200).json({ message: "User logged out" });
-  } catch (error) {
+    res.status(200).json({ message: "User logged out"});
+  } catch(error){
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
@@ -98,5 +93,4 @@ router.post("/logout", (req, res) => {
 
 module.exports = {
   router,
-  //isAuthenticated,
 };
