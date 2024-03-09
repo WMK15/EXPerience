@@ -10,6 +10,8 @@ router.post("/register", async (req, res) => {
   try {
     const { username, firstName, lastName, password } = req.body;
 
+    console.log(req.body);
+
     // Check if all required fields are present
     if (!username || !firstName || !lastName || !password) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -58,12 +60,13 @@ router.post("/login", async (req, res) => {
     }
 
     // set the req.isAuthenticated to true
-    req.session.isAuthenticated = true;
+    req.isAuthenticated = true;
     // set the req.user to the authenticated user
     req.user = user;
 
     res.status(200).json({ message: "User authenticated successfully" });
   } catch (error) {
+    console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
