@@ -98,5 +98,5 @@ router.post("/logout", (req, res) => {
 
 module.exports = {
   router,
-  isAuthenticated,
+  //isAuthenticated,
 };
