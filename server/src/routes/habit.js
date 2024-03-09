@@ -1,9 +1,8 @@
-const express = require("express");
 const User = require("../models/profileSchema");
 const Dog = require("../models/dogSchema");
 const Habit = require("../models/habitSchema");
 
-const router = express.Router();
+const router = require("express").Router();
 
 // Middleware function to check if the user is authenticated
 const isAuthenticated = (req, res, next) => {
@@ -21,17 +20,13 @@ const isAuthenticated = (req, res, next) => {
 router.get("/habits", isAuthenticated, (req, res) => {
   // Logic to retrieve habits from the database
   // Replace this with your own implementation
-  const habits = [
-    { id: 1, name: "Exercise", frequency: "Daily", completed: false },
-    { id: 2, name: "Read", frequency: "Weekly", completed: false },
-    { id: 3, name: "Meditate", frequency: "Daily", completed: false },
-  ];
+  const habits = Habit.find({ userId: req.user.id });
 
   res.json(habits);
 });
 
 // POST request to create a new habit
-router.post("/habits", isAuthenticated, (req, res) => {
+router.post("/", isAuthenticated, (req, res) => {
   // Add to Habit collection
   const habit = new Habit({
     name: req.body.name,
@@ -45,7 +40,7 @@ router.post("/habits", isAuthenticated, (req, res) => {
 });
 
 // PUT request to mark a habit as complete
-router.put("/habits/:id/complete", isAuthenticated, (req, res) => {
+router.put("/:id/complete", isAuthenticated, (req, res) => {
   // Logic to mark a habit as complete in the database
   // Replace this with your own implementation
   const habitId = parseInt(req.params.id);

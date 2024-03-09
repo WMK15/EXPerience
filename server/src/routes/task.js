@@ -1,6 +1,6 @@
-const express = require("express");
 const Task = require("../models/taskSchema");
-const router = express.Router();
+const router = require("express").Router();
+const mongoose = require("mongoose");
 
 // Middleware function to check if the user is authenticated
 const isAuthenticated = (req, res, next) => {
@@ -15,7 +15,7 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // GET all tasks
-router.get("/tasks", isAuthenticated, (req, res) => {
+router.get("/", (req, res) => {
   // Logic to fetch all tasks from the database
   // and send them as a response
   Task.find()
@@ -28,14 +28,15 @@ router.get("/tasks", isAuthenticated, (req, res) => {
 });
 
 // POST a new task
-router.post("/tasks", isAuthenticated, (req, res) => {
-  const { name, priority, dueDate, completed } = req.body;
+router.post("/create", (req, res) => {
+  const { name, priority, dueTime, completed } = req.body;
   // Logic to create a new task in the database
   // using the provided data
   const task = new Task({
+    _id: new mongoose.Types.ObjectId(),
     name,
     priority,
-    dueDate,
+    dueTime: new Date(dueTime),
     completed,
   });
   task
@@ -44,18 +45,19 @@ router.post("/tasks", isAuthenticated, (req, res) => {
       res.status(201).json(newTask);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({ error: "Failed to create new task" });
     });
 });
 
 // PUT/update an existing task
-router.put("/tasks/:id", isAuthenticated, (req, res) => {
+router.put("/:id", isAuthenticated, (req, res) => {
   const taskId = req.params.id;
-  const { name, priority, dueDate, completed } = req.body;
-  if (name && priority && dueDate && completed) {
+  const { name, priority, dueTime, completed } = req.body;
+  if (name && priority && dueTime && completed) {
     Task.findByIdAndUpdate(
       taskId,
-      { name, priority, dueDate, completed },
+      { name, priority, dueTime, completed },
       { new: true }
     )
       .then((updatedTask) => {

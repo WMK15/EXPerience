@@ -1,6 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/profileSchema");
+const Dog = require("../models/dogSchema");
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -8,6 +10,8 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
   try {
     const { username, firstName, lastName, password } = req.body;
+
+    console.log(req.body);
 
     // Check if all required fields are present
     if (!username || !firstName || !lastName || !password) {
@@ -25,6 +29,7 @@ router.post("/register", async (req, res) => {
 
     // Create a new user with hashed password
     const newUser = new User({
+      _id: new mongoose.Types.ObjectId(),
       username,
       firstName,
       lastName,
@@ -34,9 +39,18 @@ router.post("/register", async (req, res) => {
     // Save the user to the database
     await newUser.save();
 
+    // Creat new dog with the user Id
+    const newDog = new Dog({
+      _id: new mongoose.Types.ObjectId(),
+      userId: newUser._id,
+      name: "Buddy",
+    });
+
+    // Save the dog to the database
+    await newDog.save();
+
     // Respond with success message
     res.status(201).json({ message: "User registered successfully" });
-    console.log("User registered successfully");
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ error: "Internal server error" });
@@ -57,12 +71,13 @@ router.post("/login", async (req, res) => {
     }
 
     // set the req.isAuthenticated to true
-    req.session.isAuthenticated = true;
+    req.isAuthenticated = true;
     // set the req.user to the authenticated user
     req.user = user;
 
     res.status(200).json({ message: "User authenticated successfully" });
   } catch (error) {
+    console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

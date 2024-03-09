@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mongo = require("./util/mongo");
 
 const authRoute = require("./routes/auth");
 const profileRoute = require("./routes/profile");
@@ -16,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
-mongo();
+require("./util/mongo")();
 
 // Routes
 app.use("/api/auth", authRoute);
@@ -28,7 +27,6 @@ app.use("/api/habits", habitRoute);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
-
 // use react build files
 app.use(express.static("../client/build"));
 
