@@ -1,20 +1,14 @@
-const axios = require("axios");
-
-const apiURI = "http://localhost:3002/api";
+import axios from "axios";
+const apiURI = "http://localhost:3002/api/auth";
 
 export const login = async (username, password) => {
   try {
     const response = await axios.post(
-      `${apiURI}/auth/login`,
+      `${apiURI}/login`,
+
       {
         username,
         password,
-      },
-      {
-        header: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
       }
     );
 

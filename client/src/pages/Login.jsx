@@ -1,35 +1,43 @@
 import React from "react";
 import { login } from "../api/auth";
+import { useState } from "react";
 
 export default function Login() {
+  const [user, setUser] = useState({ username: "", password: "" });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const username = e.target.elements.username.value;
-    const password = e.target.elements.password.value;
-    if (username && password) {
-      login(username, password);
+    if (user.username && user.password) {
+      login(user.username, user.password);
     }
   };
 
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
   return (
-    <div class="log-in__main" id="log-in__main">
-      <div class="log-in__darken">
-        <div class="log-in__darken-gradient">
-          <div class="log-in__center-container">
-            <div class="log-in__container-block">
-              <div class="log-in__rectangle--log-in">
+    <div className="log-in__main" id="log-in__main">
+      <div className="log-in__darken">
+        <div className="log-in__darken-gradient">
+          <div className="log-in__center-container">
+            <div className="log-in__container-block">
+              <div className="log-in__rectangle--log-in">
                 <h2>Welcome Back</h2>
+
                 <form
-                  class="form-content"
+                  className="form-content"
                   method="post"
-                  action="index.html"
                   id="loginForm"
+                  onSubmit={handleSubmit}
                 >
                   <input
                     type="text"
                     id="log-in__form-username"
                     placeholder="Username"
                     name="username"
+                    value={user.username}
+                    onChange={handleChange}
                     required
                   />
                   <input
@@ -37,14 +45,15 @@ export default function Login() {
                     id="log-in__form-password"
                     placeholder="Password"
                     name="password"
+                    value={user.password}
+                    onChange={handleChange}
                     required
                   />
 
                   <button
                     id="log-in__submit-button"
                     type="submit"
-                    class="log-in__submit-button highlight__shadow"
-                    onSubmit={handleSubmit}
+                    className="log-in__submit-button highlight__shadow"
                   >
                     Log in
                   </button>
@@ -52,10 +61,17 @@ export default function Login() {
                   <br />
                   <small>
                     By signing up, you agree to our{" "}
-                    <span class="log-in__highlight-text">Privacy Policy</span>,{" "}
-                    <span class="log-in__highlight-text">Cookie Policy</span>,
-                    and
-                    <span class="log-in__highlight-text">Member Agreement</span>
+                    <span className="log-in__highlight-text">
+                      Privacy Policy
+                    </span>
+                    ,{" "}
+                    <span className="log-in__highlight-text">
+                      Cookie Policy
+                    </span>
+                    , and
+                    <span className="log-in__highlight-text">
+                      Member Agreement
+                    </span>
                     .
                   </small>
                 </form>
@@ -63,7 +79,9 @@ export default function Login() {
                 <h3>
                   New user?{" "}
                   <a href="register.html">
-                    <span class="log-in__highlight-text">Register here</span>
+                    <span className="log-in__highlight-text">
+                      Register here
+                    </span>
                   </a>
                 </h3>
               </div>
