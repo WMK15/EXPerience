@@ -19,8 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
-const {connect, close, isAuthenticated} = require("./util/middleware");
+const {connect, close} = require("./util/middleware");
 app.use(connect);
+const authenticate = require("./authmiddleware");
+app.use(authenticate);
 
 app.use(cookieParser());
 app.use(session({
@@ -31,7 +33,6 @@ app.use(session({
 
 // Routes
 app.use("/api/auth", authRoute);
-app.use(isAuthenticated);
 app.use("/api/profile", profileRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/habits", habitRoute);

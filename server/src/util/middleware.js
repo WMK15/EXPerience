@@ -23,16 +23,7 @@ const close = async (req, res, next) => {
     }
 };
 
-const isAuthenticated = (req, res, next) => {
-    if (req.session.userId){
-      next();
-    } else {
-      res.status(401).send("Unauthorised");
-    }
-  }
-
 module.exports = {
     connect, 
-    close,
-    isAuthenticated
+    close
 };
