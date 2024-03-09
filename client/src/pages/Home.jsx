@@ -14,18 +14,28 @@ import dogHappy from "../assets/images/dog_happy.jpg";
 
 import { getTasks } from "../api/tasks";
 import { Tasks } from "../components/Tasks";
+import { Progress } from "../components/Progress";
+import { getProgress } from "../api/user";
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
-  //loading
   const [loading, setLoading] = useState(true);
+  const [progressValue, setProgressValue] = useState(20);
 
   useEffect(() => {
-    getTasks()
-      .then((response) => response.data)
-      .then((data) => setTasks(data.tasks))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+    try {
+      getTasks()
+        .then((response) => response.data)
+        .then((data) => setTasks(data.tasks));
+
+      getProgress()
+        .then((response) => response.data)
+        .then((data) => setProgressValue(data.progress));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   // return a grid with one row and two columns, the first column should be 3/12 and the second column should be 9/12
@@ -96,10 +106,7 @@ export default function Home() {
           <Tasks tasks={tasks} />
         </Col>
         <Col xs={9}>
-          <Container style={{ height: "100%" }}>
-            <h1>Progress</h1>
-            <ProgressBar now={60} />
-          </Container>
+          <Progress value={progressValue} />
         </Col>
       </Row>
     </>

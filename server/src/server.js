@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const crypto = require("crypto");
 const secret = crypto.randomBytes(64).toString("hex");
+const path = require("path");
 
 const authRoute = require("./routes/auth");
 const profileRoute = require("./routes/profile");
@@ -37,12 +38,12 @@ app.use("/api/profile", profileRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/habits", habitRoute);
 
-// Serve React app for all other routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-// use react build files
-app.use(express.static("../client/build"));
+// // Serve React app for all other routes
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
+// // use react build files
+// app.use(express.static("../client/build"));
 
 // Error handling middleware
 app.use((err, req, res, next) => {

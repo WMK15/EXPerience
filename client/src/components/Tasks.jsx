@@ -1,71 +1,45 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Form, Button, ListGroup } from "react-bootstrap";
-import { createTask } from "../api/tasks";
+import AddTaskModal from "./addTask";
+import { getTasks } from "../api/tasks";
 
 export const Tasks = ({ tasks }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [show, setShow] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const task = {
-      name,
-      description,
-    };
-
-    createTask(task).then((response) => {
-      console.log(response);
-      alert("Task created successfully");
-    });
-  };
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
+  useEffect(() => {
+    getTasks();
+  });
 
   return (
     <div>
       <Card style={{ width: "18rem" }}>
         <Card.Header>
-          <strong>Goals for Today</strong>
-        </Card.Header>
-        <Card.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="taskName">
-              <Form.Label>Task Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter task name"
-                onChange={handleNameChange}
-                value={name}
-              />
-            </Form.Group>
-            <Form.Group controlId="taskDescription">
-              <Form.Label>Task Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Enter task description"
-                onChange={handleDescriptionChange}
-                value={description}
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>Tasks</span>
+            <Button
+              variant="primary"
+              onClick={() => {
+                setShow(true);
+              }}
+            >
               Add
             </Button>
-          </Form>
-          {/* Task list */}
+          </div>
+        </Card.Header>
+        <Card.Body>
           <ListGroup>
-            {/* Render tasks dynamically */}
             {tasks.map((task) => (
-              <ListGroup.Item key={task.id}>{task.name}</ListGroup.Item>
+              <ListGroup.Item key={task._id}>{task.name}</ListGroup.Item>
             ))}
           </ListGroup>
+
+          <AddTaskModal
+            show={show}
+            handleClose={() => {
+              setShow(false);
+            }}
+          />
         </Card.Body>
       </Card>
     </div>

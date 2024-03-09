@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -35,6 +37,7 @@ body {
     color: var(--color-dark);
     background-color: var(--color-white);
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 
 .log-in__main {
@@ -375,9 +378,4 @@ body {
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
-}
-
-.weeklyButton {
-    background-color: var(--color-gray);
-    color: var(--color-white);
 }

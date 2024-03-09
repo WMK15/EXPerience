@@ -1,14 +1,26 @@
 import React from "react";
 import { login } from "../api/auth";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   const [user, setUser] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (user.username && user.password) {
-      login(user.username, user.password);
+      login(user.username, user.password)
+        .then((response) => {
+          if (response.status === 200) {
+            navigate(`/dashboard/`);
+          } else {
+            alert("Invalid username or password");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 
