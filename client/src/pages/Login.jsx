@@ -13,7 +13,8 @@ export default function Login() {
       login(user.username, user.password)
         .then((response) => {
           if (response.status === 200) {
-            navigate(`/dashboard/`);
+            // Redirect to dashboard with user id
+            navigate(`/dashboard/${response.data.userId}`);
           } else {
             alert("Invalid username or password");
           }

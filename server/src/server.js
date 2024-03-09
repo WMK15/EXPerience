@@ -37,6 +37,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/habits", habitRoute);
+app.use("/api/isAuth", require("./routes/isAuth"));
 
 // // Serve React app for all other routes
 // app.get("*", (req, res) => {

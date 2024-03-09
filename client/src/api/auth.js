@@ -7,3 +7,7 @@ export const login = async (username, password) => {
     password,
   });
 };
+
+export const handleAuthenticated = async () => {
+  return axios.get(`http://localhost:3002/api/isAuth`);
+};

@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import App from "./App";
 import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,8 +17,9 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="/" index element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="dashboard/" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
