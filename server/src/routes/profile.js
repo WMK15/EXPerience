@@ -1,10 +1,11 @@
 const express = require("express");
 const User = require("../models/profileSchema");
+const isAuthenticated = require("../utils/authmiddlelayer");
 
 const router = express.Router();
 
 // GET request to retrieve user profile
-router.get("/:id", async (req, res) => {
+router.get("/:id", isAuthenticated, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     res.json(user);
@@ -14,7 +15,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST request to create a new user
-router.post("/", async (req, res) => {
+router.post("/", isAuthenticated, async (req, res) => {
   const { firstName, lastName, password } = req.body;
 
   try {
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
 });
 
 // PUT request to update user profile
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAuthenticated, async (req, res) => {
   const { firstName, lastName, password } = req.body;
 
   try {

@@ -1,21 +1,10 @@
 const Task = require("../models/taskSchema");
 const router = require("express").Router();
 const mongoose = require("mongoose");
-
-// Middleware function to check if the user is authenticated
-const isAuthenticated = (req, res, next) => {
-  // Check if the user is authenticated
-  if (req.isAuthenticated()) {
-    // User is authenticated, proceed to the next middleware or route handler
-    return next();
-  }
-
-  // User is not authenticated, send an error response
-  res.status(401).json({ message: "Unauthorized" });
-};
+const isAuthenticated = require("../utils/authmiddlelayer");
 
 // GET all tasks
-router.get("/", (req, res) => {
+router.get("/", isAuthenticated, (req, res) => {
   // Logic to fetch all tasks from the database
   // and send them as a response
   Task.find()
@@ -28,7 +17,7 @@ router.get("/", (req, res) => {
 });
 
 // POST a new task
-router.post("/create", (req, res) => {
+router.post("/create", isAuthenticated, (req, res) => {
   const { name, priority, dueTime, completed } = req.body;
   // Logic to create a new task in the database
   // using the provided data
