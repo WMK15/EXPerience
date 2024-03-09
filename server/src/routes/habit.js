@@ -1,9 +1,8 @@
-const express = require("express");
 const User = require("../models/profileSchema");
 const Dog = require("../models/dogSchema");
 const Habit = require("../models/habitSchema");
 
-const router = express.Router();
+const router = require("express").Router();
 
 // Middleware function to check if the user is authenticated
 const isAuthenticated = (req, res, next) => {

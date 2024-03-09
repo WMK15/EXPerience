@@ -19,16 +19,15 @@ app.use(express.urlencoded({ extended: true }));
 mongo();
 
 // Routes
-app.use("/api/auth", authRoute);
-app.use("/api/profile", profileRoute);
-app.use("/api/tasks", taskRoute);
-app.use("/api/habits", habitRoute);
+app.use("/auth", authRoute);
+app.use("/profile", profileRoute);
+app.use("/tasks", taskRoute);
+app.use("/habits", habitRoute);
 
 // Serve React app for all other routes
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
-
 // use react build files
 app.use(express.static("../client/build"));
 
