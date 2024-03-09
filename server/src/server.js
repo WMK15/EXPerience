@@ -1,6 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const crypto = require("crypto");
+const secret = crypto.randomBytes(64).toString("hex");
 
 const authRoute = require("./routes/auth");
 const profileRoute = require("./routes/profile");
@@ -15,7 +19,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to MongoDB
-require("./util/mongo")();
+const {connect, close} = require("./util/middleware");
+app.use(connect);
+
+app.use(cookieParser());
+app.use(session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // Routes
 app.use("/api/auth", authRoute);

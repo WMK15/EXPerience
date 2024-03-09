@@ -6,12 +6,19 @@ const mongoose = require("mongoose");
 
 const router = express.Router();
 
+const isAuthenticated = (req, res, next) => {
+  if (req.session.userId){
+    res.cookie("authenticated", "true", {maxAge: 3600000, httpOnly: true});
+    next();
+  } else {
+    res.status(401).send("Unauthorised");
+  }
+}
+
 // POST request to register a new user
 router.post("/register", async (req, res) => {
   try {
     const { username, firstName, lastName, password } = req.body;
-
-    console.log(req.body);
 
     // Check if all required fields are present
     if (!username || !firstName || !lastName || !password) {
@@ -70,8 +77,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password" });
     }
 
-    // set the req.isAuthenticated to true
-    req.isAuthenticated = true;
+    req.session.userId = user._id;
+
     // set the req.user to the authenticated user
     req.user = user;
 
@@ -81,5 +88,16 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+router.post("/logout", (req, res) => {
+  try{
+    req.session.destroy();
+    res.clearCookie("authenticated");
+    res.status(200).json({ message: "User logged out"});
+  } catch(error){
+    console.error("Error authenticating user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+})
 
 module.exports = router;
