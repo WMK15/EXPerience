@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // connect to MongoDB
 const {connect, close} = require("./util/middleware");
 app.use(connect);
-const authenticate = require("./authmiddleware");
+const authenticate = require("./util/authmiddlelayer");
 app.use(authenticate);
 
 app.use(cookieParser());
