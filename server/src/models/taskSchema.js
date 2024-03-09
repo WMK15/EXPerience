@@ -25,6 +25,11 @@ const taskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  day: {
+    type: String,
+    enum: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Task", taskSchema);

@@ -13,6 +13,7 @@ import {
 import dogHappy from "../assets/images/dog_happy.jpg";
 
 import { getTasks } from "../api/tasks";
+import { Tasks } from "../components/Tasks";
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
@@ -92,38 +93,7 @@ export default function Home() {
               </Nav.Item>
             </Nav>
           </div>
-          <div>
-            <Card style={{ width: "18rem" }}>
-              <Card.Header>Add Task</Card.Header>
-              <Card.Body>
-                {/* Add task form */}
-                <Form>
-                  <Form.Group controlId="taskName">
-                    <Form.Label>Task Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter task name" />
-                  </Form.Group>
-                  <Form.Group controlId="taskDescription">
-                    <Form.Label>Task Description</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Enter task description"
-                    />
-                  </Form.Group>
-                  <Button variant="primary" type="submit">
-                    Add
-                  </Button>
-                </Form>
-                {/* Task list */}
-                <ul>
-                  {/* Render tasks dynamically */}
-                  {tasks.map((task) => (
-                    <li key={task.id}>{task.name}</li>
-                  ))}
-                </ul>
-              </Card.Body>
-            </Card>
-          </div>
+          <Tasks tasks={tasks} />
         </Col>
         <Col xs={9}>
           <Container style={{ height: "100%" }}>
