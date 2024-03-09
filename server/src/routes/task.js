@@ -28,7 +28,7 @@ router.get("/tasks", (req, res) => {
 });
 
 // POST a new task
-router.post("/tasks", (req, res) => {
+router.post("/create", (req, res) => {
   const { name, priority, dueTime, completed } = req.body;
   // Logic to create a new task in the database
   // using the provided data
@@ -51,7 +51,7 @@ router.post("/tasks", (req, res) => {
 });
 
 // PUT/update an existing task
-router.put("/tasks/:id", (req, res) => {
+router.put("/tasks/:id", isAuthenticated, (req, res) => {
   const taskId = req.params.id;
   const { name, priority, dueTime, completed } = req.body;
   if (name && priority && dueTime && completed) {
