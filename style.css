@@ -34,7 +34,8 @@
 body {
     color: var(--color-dark);
     background-color: var(--color-white);
-    overflow: visible; /* or overflow: auto; */
+    overflow: visible;
+    /* or overflow: auto; */
 }
 
 h1 {
@@ -44,18 +45,34 @@ h1 {
     text-align: center;
 }
 
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+    /* Add other font formats (e.g., woff, woff2) for better browser support */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .card-img-top {
-    min-height: 200px; /* Set the minimum height as needed */
-    max-height: 200px; /* Set the maximum height as needed */
+    min-height: 200px;
+    /* Set the minimum height as needed */
+    max-height: 200px;
+    /* Set the maximum height as needed */
     width: 100%;
-    object-fit: cover; /* Ensure the image covers the entire space */
-    border-top-left-radius: 0; /* Remove top-left border radius */
-    border-top-right-radius: 0; /* Remove top-right border radius */
+    object-fit: cover;
+    /* Ensure the image covers the entire space */
+    border-top-left-radius: 0;
+    /* Remove top-left border radius */
+    border-top-right-radius: 0;
+    /* Remove top-right border radius */
 }
 
 .card {
-    border-top-left-radius: 0; /* Remove top-left border radius */
-    border-top-right-radius: 0; /* Remove top-right border radius */
+    border-top-left-radius: 0;
+    /* Remove top-left border radius */
+    border-top-right-radius: 0;
+    /* Remove top-right border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .log-in__main {
@@ -408,7 +425,8 @@ h1 {
 }
 
 .landing__main {
-    height: 300vh;
+    min-height: 100vh;
+    height: auto;
     margin: 0px;
     padding: 0px;
     background-color: #006BA6;
@@ -426,18 +444,52 @@ h1 {
 }
 
 .landing__panel-two {
-    height: 100vh;
+    height: 125vh;
     background-color: rgb(248, 248, 248);
+    overflow-y: hidden;
+}
+
+.landing__panel-two h1 {
+    color: #1d2522;
+    font-family: 'Poppins', sans-serif
 }
 
 .landing__panel-three {
-    height: 100vh;
-    background-color: salmon;
+    height: 120vh;
+    background-color: #1d2522;
+}
+
+.landing__panel-three card-img-top {
+    min-height: 400px;
+    /* Set the minimum height as needed */
+    max-height: 400px;
+    /* Set the maximum height as needed */
+    width: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the entire space */
+    border-top-left-radius: 0;
+    /* Remove top-left border radius */
+    border-top-right-radius: 0;
+    /* Remove top-right border radius */
+}
+
+.landing__panel-three h1 {
+    font-family: 'Press Start 2P';
+    text-align: center;
+    color: white;
+    flex-wrap: nowrap;
+    padding: calc(0.5vh + 0.5vw);
+    padding-bottom: 20px;
+    margin: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
 }
 
 .landing__center {
-    text-align: center; /* Center horizontally */
-    height: 100vh; /* Set height to fill the viewport */
+    text-align: center;
+    /* Center horizontally */
+    height: 100vh;
+    /* Set height to fill the viewport */
 }
 
 .landing__content {
@@ -447,8 +499,10 @@ h1 {
     transform: translate(-50%, -50%);
     /* Additional styles for your content */
     user-select: auto;
-    max-width: 800px; /* Example max-width */
-    padding: 20px; /* Example padding */
+    max-width: 800px;
+    /* Example max-width */
+    padding: 20px;
+    /* Example padding */
 }
 
 .landing__center h1 {
@@ -461,25 +515,82 @@ h1 {
     margin: 0px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
+
 .landing__center h2 {
-    font-family: 'Montserrat';
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
     text-align: center;
     color: white;
     flex-wrap: nowrap;
-    padding: calc(0.5vh + 0.5vw);
+    padding: calc(0.3vh + 0.3vw);
     margin: 0px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: calc(1.3vh + 1.3vw);
 }
 
-.landing__navbar {
+.general__navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #333; /* Change the background color as needed */
-    padding: 10px 0; /* Adjust padding as needed */
-    z-index: 1000; /* Adjust z-index as needed */
-    /* Add additional styles such as font-size, color, etc. */
+    background-color: #1d2522;
+    /* Change the background color as needed */
+    padding: 10px 0;
+    /* Adjust padding as needed */
+    z-index: 1000;
+    /* Adjust z-index as needed */
+    /* Add additional styles such 
+    as font-size, color, etc. */
+    margin: 0px;
+}
+
+.general__navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+
+.btn:hover {
+    background-color: #ffa500;
+}
+
+.brand {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    background-image: url('images/brand_1');
+    max-width: 6%;
+    margin-top: -1.5%;
+    margin-bottom: -1.5%;
+}
+
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins';
+}
+
+.nav-links li {
+    display: inline;
+    font-family: 'Press Start 2P';
+}
+
+.nav-links li:not(:last-child) {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ffa500;
+    /* Change color on hover */
 }
 
 .glass {
@@ -490,12 +601,5 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     margin: 10px;
-}
-
-
-@font-face {
-    font-family: 'Press Start 2P';
-    src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
-    /* Add other font formats (e.g., woff, woff2) for better browser support */
 }
 
