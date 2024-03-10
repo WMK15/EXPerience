@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/profileSchema");
 const Dog = require("../models/dogSchema");
 const mongoose = require("mongoose");
+const generateRandomId = require("../utils/generateRandomId");
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.post("/register", async (req, res) => {
 
     // Create a new user with hashed password
     const newUser = new User({
-      _id: new mongoose.Types.ObjectId(),
+      id: username,
       username,
       firstName,
       lastName,
@@ -39,8 +40,8 @@ router.post("/register", async (req, res) => {
 
     // Creat new dog with the user Id
     const newDog = new Dog({
-      _id: new mongoose.Types.ObjectId(),
-      userId: newUser._id,
+      userId: newUser.id,
+      dogId: generateRandomId(),
       name: "Buddy",
     });
 
@@ -72,10 +73,10 @@ router.post("/login", async (req, res) => {
     req.session.isAuthenticated = true;
     // set the req.user to the authenticated user
     req.user = user;
-    req.session.userId = user._id;
+    req.session.userId = user.id;
 
     res.cookie("authenticated", "true", { maxAge: 3600000, httpOnly: true });
-    res.status(200).json({ message: "User authenticated successfully" });
+    res.status(200).json(req.user);
   } catch (error) {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal server error" });

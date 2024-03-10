@@ -4,16 +4,6 @@ const isAuthenticated = require("../utils/authmiddlelayer");
 
 const router = express.Router();
 
-// GET request to retrieve user profile
-router.get("/:id", isAuthenticated, async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
 // POST request to create a new user
 router.post("/", isAuthenticated, async (req, res) => {
   const { firstName, lastName, password } = req.body;
@@ -32,22 +22,31 @@ router.post("/", isAuthenticated, async (req, res) => {
   }
 });
 
+router.get("/:userId", async (req, res) => {
+  const id = req.params.userId;
+
+  await User.findOne({ id }).then((user) => {
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  });
+});
+
 // PUT request to update user profile
-router.put("/:id", isAuthenticated, async (req, res) => {
-  const { firstName, lastName, password } = req.body;
+router.put("/:userId", async (req, res) => {
+  const userId = req.params.userId;
 
+  console.log(req.body);
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
-      {
-        firstName,
-        lastName,
-        password,
-      },
+    await User.findOneAndUpdate(
+      { id: userId },
+      { ...req.body },
       { new: true }
-    );
-
-    res.json(updatedUser);
+    ).then((updatedUser) => {
+      res.json(updatedUser);
+    });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

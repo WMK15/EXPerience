@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { createHabit } from "../../api/habits";
 
-const AddHabitModal = ({ show, handleClose }) => {
+const AddHabitModal = ({ navigate, userId, show, handleClose }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("");
-  const [dueTime, setDueTime] = useState("");
+  const [timeRequired, setTimeRequired] = useState(0);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const habit = {
+      userId,
       name,
       description,
-      priority,
-      dueTime,
+      timeRequired,
     };
 
     createHabit(habit).then((response) => {
-      console.log(response);
       alert("Habit created successfully");
+      setName("");
+      setDescription("");
+      setTimeRequired(0);
+      handleClose();
+      //refresh the page
+      navigate(`/dashboard/${userId}`);
     });
   };
 
@@ -31,23 +35,37 @@ const AddHabitModal = ({ show, handleClose }) => {
     setDescription(event.target.value);
   };
 
-  const handlePriorityChange = (event) => {
-    setPriority(event.target.value);
-  };
-
-  const handleDueDateChange = (event) => {
-    setDueTime(event.target.value);
+  const handleTimeRequiredChange = (event) => {
+    setTimeRequired(event.target.value);
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Add Habit</Modal.Title>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+    >
+      <Modal.Header
+        closeButton
+        style={{
+          backgroundColor: "black",
+          color: "white",
+          borderColor: "black",
+          boxShadow: "2px 1px 50px 0 gray",
+        }}
+      >
+        <Modal.Title style={{ color: "lightgray" }}>Add Habit</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Body
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            borderColor: "#3c4032",
+          }}
+        >
           <Form.Group controlId="habitName">
-            <Form.Label>Habit Name</Form.Label>
+            <Form.Label style={{ color: "lightgray" }}>Habit Name</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter habit name"
@@ -56,7 +74,7 @@ const AddHabitModal = ({ show, handleClose }) => {
             />
           </Form.Group>
           <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
+            <Form.Label style={{ color: "lightgray" }}>Description</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
@@ -65,37 +83,33 @@ const AddHabitModal = ({ show, handleClose }) => {
               onChange={handleDescriptionChange}
             />
           </Form.Group>
-          <Form.Group controlId="dueDate">
-            <Form.Label>Due Date</Form.Label>
+          <Form.Group controlId="timeRequired">
+            <Form.Label style={{ color: "lightgray" }}>
+              Time Required
+            </Form.Label>
             <Form.Control
-              type="datetime-local"
-              value={dueTime}
-              onChange={handleDueDateChange}
+              type="number"
+              placeholder="Enter time required"
+              value={timeRequired}
+              onChange={handleTimeRequiredChange}
             />
           </Form.Group>
-          <Form.Group controlId="priority">
-            <Form.Label>Priority</Form.Label>
-            <Form.Control
-              as="select"
-              value={priority}
-              onChange={handlePriorityChange}
-            >
-              <option value="">Select priority</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </Form.Control>
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" type="submit">
-          Add Habit
-        </Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            borderColor: "#3c4032",
+          }}
+        >
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="success" type="submit">
+            Add Habit
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 };

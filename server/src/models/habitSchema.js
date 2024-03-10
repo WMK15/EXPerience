@@ -1,14 +1,8 @@
 const mongoose = require("mongoose");
 
-const frequencyEnum = ["Daily", "Weekly", "Monthly"];
-
 const habitSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
-  },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
     required: true,
   },
   name: {
@@ -19,22 +13,11 @@ const habitSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  frequency: {
-    type: String,
-    enum: frequencyEnum,
+  // In terms of minutes
+  timeRequired: {
+    type: Number,
     required: true,
-  },
-
-  completed: {
-    type: Boolean,
-    default: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
   },
 });
 
-const Habit = mongoose.model("Habit", habitSchema);
-
-module.exports = Habit;
+module.exports = mongoose.model("Habit", habitSchema);

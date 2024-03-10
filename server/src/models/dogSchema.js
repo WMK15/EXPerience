@@ -1,25 +1,22 @@
 const mongoose = require("mongoose");
 
 const dogSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
+  dogId: {
+    type: String,
+    required: true,
   },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
     required: true,
   },
   name: {
     type: String,
     required: true,
   },
-  survivalXP: {
+  health: {
     type: Number,
-    default: 0,
-  },
-  level: {
-    type: Number,
-    default: 1,
+    required: true,
+    default: 80,
   },
 });
 

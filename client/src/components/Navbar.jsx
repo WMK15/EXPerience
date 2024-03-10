@@ -6,12 +6,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo/logo.png";
 
 import { handleAuthenticated } from "../api/auth";
 
 function ReactNav() {
   // Render the appropriate navbar based on authentication status
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   //   useEffect(() => {
   //     try {
@@ -28,79 +29,51 @@ function ReactNav() {
   //     }
   //   }, []);
 
-  if (isAuthenticated) {
-    return (
-      <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+  return (
+    <div className="navbarr">
+      <Navbar id="navbar" expand="xl">
         <Container>
           <Navbar.Brand>
-            <Link to="/">Xperience</Link>
+            <div className="dynamicNav">
+              <Link
+                to="/"
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                }}
+              >
+                <img src={logo} height={"70rem"} />
+                EXPerience
+              </Link>
+            </div>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
-              <Nav.Link eventKey={2}>
-                <Link>Settings</Link>
+
+          <Nav>
+            {isAuthenticated ? (
+              <Nav.Link className="navLink">
+                <div className="dynamicNav">
+                  <Link style={{ color: "white", textDecoration: "none" }}>
+                    Profile
+                  </Link>
+                </div>
               </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
+            ) : (
+              <Nav.Link>
+                <div className="dynamicNav">
+                  <Link
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/login"
+                  >
+                    Sign In
+                  </Link>
+                </div>
+              </Nav.Link>
+            )}
+          </Nav>
         </Container>
       </Navbar>
-    );
-  } else {
-    return (
-      <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand>
-            <Link to="/">Xperience</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
-              <Nav.Link eventKey={2}>
-                <Link>Settings</Link>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    );
-  }
+    </div>
+  );
 }
 
 export default ReactNav;

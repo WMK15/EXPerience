@@ -19,7 +19,10 @@ root.render(
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="dashboard/" element={<Dashboard />} />
+          <Route path="dashboard/:id" element={<Dashboard />} />
+          <Route path="dashboard/tasks/:id" element={<Dashboard />} />
+          <Route path="dashboard/habits/:id" element={<Dashboard />} />
+          <Route path="/*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
     </BrowserRouter>

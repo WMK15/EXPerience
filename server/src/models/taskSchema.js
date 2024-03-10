@@ -1,16 +1,20 @@
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
+  taskId: {
+    type: String,
+    required: true,
   },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
+    required: true,
   },
   name: {
     type: String,
     required: true,
+  },
+  description: {
+    type: String,
   },
   dueTime: {
     type: Date,
@@ -24,11 +28,6 @@ const taskSchema = new mongoose.Schema({
   completed: {
     type: Boolean,
     default: false,
-  },
-  day: {
-    type: String,
-    enum: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
-    required: true,
   },
 });
 

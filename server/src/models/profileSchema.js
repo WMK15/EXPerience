@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Schema.Types.ObjectId,
+  id: {
+    type: String,
+    required: true,
   },
   username: {
     type: String,
@@ -24,10 +25,6 @@ const userSchema = new mongoose.Schema({
   xp: {
     type: Number,
     default: 0,
-  },
-  level: {
-    type: Number,
-    default: 1,
   },
 });
 

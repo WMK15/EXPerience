@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { createTask } from "../../api/tasks";
 
-const AddTaskModal = ({ show, handleClose }) => {
+const AddTaskModal = ({ navigate, show, handleClose, userId }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
@@ -11,6 +11,7 @@ const AddTaskModal = ({ show, handleClose }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const task = {
+      userId,
       name,
       description,
       priority,
@@ -18,8 +19,13 @@ const AddTaskModal = ({ show, handleClose }) => {
     };
 
     createTask(task).then((response) => {
-      console.log(response);
       alert("Task created successfully");
+      setName("");
+      setDescription("");
+      setPriority("");
+      setDueTime("");
+      handleClose();
+      navigate(`/dashboard/${userId}`);
     });
   };
 
@@ -40,14 +46,32 @@ const AddTaskModal = ({ show, handleClose }) => {
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Add Task</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+    >
+      <Form onSubmit={handleSubmit}>
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            borderColor: "black",
+            boxShadow: "2px 1px 50px 0 gray",
+          }}
+        >
+          <Modal.Title>Add a New Task</Modal.Title>
+        </Modal.Header>
+        <Modal.Body
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            borderColor: "#3c4032",
+          }}
+        >
           <Form.Group controlId="taskName">
-            <Form.Label>Task Name</Form.Label>
+            <Form.Label style={{ color: "lightgray" }}>Task Name</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter task name"
@@ -55,8 +79,8 @@ const AddTaskModal = ({ show, handleClose }) => {
               onChange={handleNameChange}
             />
           </Form.Group>
-          <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
+          <Form.Group controlId="description" className="mt-3">
+            <Form.Label style={{ color: "lightgray" }}>Description</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
@@ -65,37 +89,37 @@ const AddTaskModal = ({ show, handleClose }) => {
               onChange={handleDescriptionChange}
             />
           </Form.Group>
-          <Form.Group controlId="dueDate">
-            <Form.Label>Due Date</Form.Label>
+          <Form.Group controlId="dueDate" className="mt-3">
+            <Form.Label style={{ color: "lightgray" }}>Due Date</Form.Label>
             <Form.Control
               type="datetime-local"
               value={dueTime}
               onChange={handleDueDateChange}
             />
           </Form.Group>
-          <Form.Group controlId="priority">
-            <Form.Label>Priority</Form.Label>
+          <Form.Group controlId="priority" className="mt-3">
+            <Form.Label style={{ color: "lightgray" }}>Priority</Form.Label>
             <Form.Control
               as="select"
               value={priority}
               onChange={handlePriorityChange}
             >
               <option value="">Select priority</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </Form.Control>
           </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" type="submit">
-          Add Task
-        </Button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: "black" }}>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="success" type="submit">
+            Add Task
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 };

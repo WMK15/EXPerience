@@ -1,49 +1,32 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Card, Form, Button, ListGroup } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Button, ListGroup } from "react-bootstrap";
 import AddHabitModal from "./addHabit";
-import { getHabits } from "../../api/habits";
+import ViewHabitModal from "./viewHabit";
+import { useNavigate } from "react-router-dom";
 
-export const Habits = ({ habits }) => {
+export const Habits = ({ userId, habits }) => {
   const [show, setShow] = useState(false);
-  const [habitShow, setHabitShow] = useState(false);
 
-  //   useEffect(() => {
-  //     getHabits();
-  //   });
-
-  const tempHabits = [
-    {
-      _id: "1",
-      name: "Habit 1",
-      description: "Habit 1 description",
-      priority: "high",
-      dueTime: "2021-09-01",
-    },
-    {
-      _id: "2",
-      name: "Habit 2",
-      description: "Habit 2 description",
-      priority: "medium",
-      dueTime: "2021-09-02",
-    },
-    {
-      _id: "3",
-      name: "Habit 3",
-      description: "Habit 3 description",
-      priority: "low",
-      dueTime: "2021-09-03",
-    },
-  ];
+  const navigate = useNavigate();
 
   return (
     <div>
-      <Card style={{ width: "18rem" }} className="mt-5">
+      <Card
+        style={{
+          width: "18rem",
+          backgroundColor: "whitesmoke",
+          color: "black",
+          borderColor: "black",
+          boxShadow: "2px 1px 50px 0 gray",
+        }}
+        className="mt-5"
+      >
         <Card.Header>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span>Habits</span>
             <Button
               variant="primary"
+              style={{ backgroundColor: "#7184c4", borderColor: "#679dbf" }}
               onClick={() => {
                 setShow(true);
               }}
@@ -54,8 +37,8 @@ export const Habits = ({ habits }) => {
         </Card.Header>
         <Card.Body>
           <ListGroup>
-            {tempHabits.map((habit) => (
-              <ListGroup.Item key={habit._id} className="mb-3">
+            {habits.map((habit) => (
+              <ListGroup.Item key={habit.habitId} className="mb-3">
                 <div
                   style={{
                     display: "flex",
@@ -64,36 +47,20 @@ export const Habits = ({ habits }) => {
                   }}
                 >
                   <h6>{habit.name}</h6>
-                  <viewHabit
+                  <ViewHabitModal
+                    userId={userId}
+                    navigate={navigate}
                     habit={habit}
-                    handleClose={() => {
-                      setHabitShow(false);
-                    }}
                   />
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => {
-                      setHabitShow(true);
-                    }}
-                  >
-                    View
-                  </Button>
                 </div>
-                {habitShow && (
-                  <showHabit
-                    habit={habit}
-                    handleClose={() => {
-                      setHabitShow(false);
-                    }}
-                  />
-                )}
               </ListGroup.Item>
             ))}
           </ListGroup>
 
           <AddHabitModal
+            userId={userId}
             show={show}
+            navigate={navigate}
             handleClose={() => {
               setShow(false);
             }}

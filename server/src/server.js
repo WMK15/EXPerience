@@ -11,6 +11,7 @@ const authRoute = require("./routes/auth");
 const profileRoute = require("./routes/profile");
 const taskRoute = require("./routes/task");
 const habitRoute = require("./routes/habit");
+const dogRoute = require("./routes/dog");
 
 const app = express();
 const port = process.env.PORT || 3002;
@@ -19,9 +20,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// connect to MongoDB
-const { connect, close } = require("./utils/middleware");
-app.use(connect);
+// // connect to MongoDB
+// const { connect, close } = require("./utils/middleware");
+// app.use(connect);
+
+require("./utils/mongo")();
 
 app.use(cookieParser());
 app.use(
@@ -37,7 +40,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/habits", habitRoute);
-app.use("/api/isAuth", require("./routes/isAuth"));
+app.use("/api/dog", dogRoute);
 
 // // Serve React app for all other routes
 // app.get("*", (req, res) => {
