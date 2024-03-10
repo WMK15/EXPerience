@@ -1,6 +1,19 @@
 {
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+  "name": "experience",
+  "version": "1.0.0",
+  "description": "A web platform to make productivity an experience, not a chore.",
+  "main": "none",
+  "scripts": {
+    "build client": "cd client && npm install",
+    "build server": "cd server && npm install",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm start",
+    "client": "cd client && npm start"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "concurrently": "8.2.2"
+  },
+  "author": "nerds.tech",
+  "license": "ISC"
 }
