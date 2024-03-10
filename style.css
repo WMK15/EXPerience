@@ -34,7 +34,45 @@
 body {
     color: var(--color-dark);
     background-color: var(--color-white);
-    overflow: hidden;
+    overflow: visible;
+    /* or overflow: auto; */
+}
+
+h1 {
+    font-family: 'Montserrat';
+    margin: 0px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+    /* Add other font formats (e.g., woff, woff2) for better browser support */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.card-img-top {
+    min-height: 200px;
+    /* Set the minimum height as needed */
+    max-height: 200px;
+    /* Set the maximum height as needed */
+    width: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the entire space */
+    border-top-left-radius: 0;
+    /* Remove top-left border radius */
+    border-top-right-radius: 0;
+    /* Remove top-right border radius */
+}
+
+.card {
+    border-top-left-radius: 0;
+    /* Remove top-left border radius */
+    border-top-right-radius: 0;
+    /* Remove top-right border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .log-in__main {
@@ -48,7 +86,7 @@ body {
     width: 100%;
     height: 100vh;
     margin: 0 auto;
-    background-image: url('images/background_1.jpg');
+    background-image: url('images/background_2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -57,8 +95,8 @@ body {
 
 .log-in__main h2 {
     font-family: var(--header-font), sans-serif;
+    margin-bottom: 10px;
 }
-
 
 .log-in__darken {
     position: fixed;
@@ -277,7 +315,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.general__darken-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
 }
 
 .general__btn {
@@ -376,3 +423,183 @@ body {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
+
+.landing__main {
+    min-height: 100vh;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    background-color: #006BA6;
+    overflow: hidden;
+}
+
+.landing__panel-one {
+    height: 100vh;
+    background-color: wheat;
+    background-image: url("images/background_2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    user-select: none;
+}
+
+.landing__panel-two {
+    height: 125vh;
+    background-color: rgb(248, 248, 248);
+    overflow-y: hidden;
+}
+
+.landing__panel-two h1 {
+    color: #1d2522;
+    font-family: 'Poppins', sans-serif
+}
+
+.landing__panel-three {
+    height: 120vh;
+    background-color: #1d2522;
+}
+
+.landing__panel-three card-img-top {
+    min-height: 400px;
+    /* Set the minimum height as needed */
+    max-height: 400px;
+    /* Set the maximum height as needed */
+    width: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the entire space */
+    border-top-left-radius: 0;
+    /* Remove top-left border radius */
+    border-top-right-radius: 0;
+    /* Remove top-right border radius */
+}
+
+.landing__panel-three h1 {
+    font-family: 'Press Start 2P';
+    text-align: center;
+    color: white;
+    flex-wrap: nowrap;
+    padding: calc(0.5vh + 0.5vw);
+    padding-bottom: 20px;
+    margin: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
+}
+
+.landing__center {
+    text-align: center;
+    /* Center horizontally */
+    height: 100vh;
+    /* Set height to fill the viewport */
+}
+
+.landing__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Additional styles for your content */
+    user-select: auto;
+    max-width: 800px;
+    /* Example max-width */
+    padding: 20px;
+    /* Example padding */
+}
+
+.landing__center h1 {
+    font-family: 'Press Start 2P', Courier, monospace;
+    text-align: center;
+    color: white;
+    flex-wrap: nowrap;
+    padding: calc(1vh + 1vw);
+    padding-bottom: 0px;
+    margin: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.landing__center h2 {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    text-align: center;
+    color: white;
+    flex-wrap: nowrap;
+    padding: calc(0.3vh + 0.3vw);
+    margin: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: calc(1.3vh + 1.3vw);
+}
+
+.general__navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1d2522;
+    /* Change the background color as needed */
+    padding: 10px 0;
+    /* Adjust padding as needed */
+    z-index: 1000;
+    /* Adjust z-index as needed */
+    /* Add additional styles such 
+    as font-size, color, etc. */
+    margin: 0px;
+}
+
+.general__navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+
+.btn:hover {
+    background-color: #ffa500;
+}
+
+.brand {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    background-image: url('images/brand_1');
+    max-width: 6%;
+    margin-top: -1.5%;
+    margin-bottom: -1.5%;
+}
+
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins';
+}
+
+.nav-links li {
+    display: inline;
+    font-family: 'Press Start 2P';
+}
+
+.nav-links li:not(:last-child) {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ffa500;
+    /* Change color on hover */
+}
+
+.glass {
+    background-color: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(1px);
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin: 10px;
+}
+
