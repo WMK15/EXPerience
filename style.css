@@ -34,7 +34,28 @@
 body {
     color: var(--color-dark);
     background-color: var(--color-white);
-    overflow: hidden;
+    overflow: visible; /* or overflow: auto; */
+}
+
+h1 {
+    font-family: 'Montserrat';
+    margin: 0px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.card-img-top {
+    min-height: 200px; /* Set the minimum height as needed */
+    max-height: 200px; /* Set the maximum height as needed */
+    width: 100%;
+    object-fit: cover; /* Ensure the image covers the entire space */
+    border-top-left-radius: 0; /* Remove top-left border radius */
+    border-top-right-radius: 0; /* Remove top-right border radius */
+}
+
+.card {
+    border-top-left-radius: 0; /* Remove top-left border radius */
+    border-top-right-radius: 0; /* Remove top-right border radius */
 }
 
 .log-in__main {
@@ -48,7 +69,7 @@ body {
     width: 100%;
     height: 100vh;
     margin: 0 auto;
-    background-image: url('images/background_1.jpg');
+    background-image: url('images/background_2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -57,8 +78,8 @@ body {
 
 .log-in__main h2 {
     font-family: var(--header-font), sans-serif;
+    margin-bottom: 10px;
 }
-
 
 .log-in__darken {
     position: fixed;
@@ -277,7 +298,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.general__darken-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
 }
 
 .general__btn {
@@ -376,3 +406,96 @@ body {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
+
+.landing__main {
+    height: 300vh;
+    margin: 0px;
+    padding: 0px;
+    background-color: #006BA6;
+    overflow: hidden;
+}
+
+.landing__panel-one {
+    height: 100vh;
+    background-color: wheat;
+    background-image: url("images/background_2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    user-select: none;
+}
+
+.landing__panel-two {
+    height: 100vh;
+    background-color: rgb(248, 248, 248);
+}
+
+.landing__panel-three {
+    height: 100vh;
+    background-color: salmon;
+}
+
+.landing__center {
+    text-align: center; /* Center horizontally */
+    height: 100vh; /* Set height to fill the viewport */
+}
+
+.landing__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Additional styles for your content */
+    user-select: auto;
+    max-width: 800px; /* Example max-width */
+    padding: 20px; /* Example padding */
+}
+
+.landing__center h1 {
+    font-family: 'Press Start 2P', Courier, monospace;
+    text-align: center;
+    color: white;
+    flex-wrap: nowrap;
+    padding: calc(1vh + 1vw);
+    padding-bottom: 0px;
+    margin: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+.landing__center h2 {
+    font-family: 'Montserrat';
+    text-align: center;
+    color: white;
+    flex-wrap: nowrap;
+    padding: calc(0.5vh + 0.5vw);
+    margin: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.landing__navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Change the background color as needed */
+    padding: 10px 0; /* Adjust padding as needed */
+    z-index: 1000; /* Adjust z-index as needed */
+    /* Add additional styles such as font-size, color, etc. */
+}
+
+.glass {
+    background-color: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(1px);
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin: 10px;
+}
+
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+    /* Add other font formats (e.g., woff, woff2) for better browser support */
+}
+
