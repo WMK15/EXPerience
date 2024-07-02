@@ -6,7 +6,7 @@
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 This is a submission for **HackLondon 2024**, an overnight Hackathon hosted by KCL Tech, UCL Technology Society, and UCL CSS. Click [here](https://devpost.com/software/experience-e3mf54?ref_content=user-portfolio&ref_feature=in_progress) to view the Devpost submission.
 ## Inspiration
