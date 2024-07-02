@@ -8,7 +8,7 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 
-This is a submission for **HackLondon 2024**, an overnight Hackathon hosted by KCL Tech, UCL Technology Society, and UCL CSS.<br>Click [here](https://devpost.com/software/experience-e3mf54?ref_content=user-portfolio&ref_feature=in_progress) to view the Devpost submission.
+This is a submission for **HackLondon 2024**, an overnight Hackathon hosted by KCL Tech, UCL Technology Society, and UCL CSS. Click [here](https://devpost.com/software/experience-e3mf54?ref_content=user-portfolio&ref_feature=in_progress) to view the Devpost submission.
 ## Inspiration
 People struggle to keep attention of their tasks and habits. There are many apps over the internet, but they're either not user-friendly or not enough to meet your needs. We want to make productivity an experience - not a chore.
 
